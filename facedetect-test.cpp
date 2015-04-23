@@ -11,11 +11,11 @@ using namespace std;
 using namespace cv;
 
 // Function Headers
-void detectAndDisplay(Mat frame);
+void detectAndDisplay(Mat frame, String output_folder);
 
 // Global variables
 // Copy this file from opencv/data/haarscascades to target folder
-string face_cascade_name = "../opencv/data/haarcascades/haarcascade_frontalface_alt.xml";
+string face_cascade_name = "haarcascade_frontalface_alt.xml";
 CascadeClassifier face_cascade;
 string window_name = "Capture - Face detection";
 int filenumber; // Number of file to be saved
@@ -50,8 +50,8 @@ int main(int argc, const char *argv[])
         exit(1);
     }
     string output_folder = ".";
-    if (argc == 3) {
-    	output_folder = string(argv[2]);
+    if (argc >= 3) {
+    	output_folder = argv[2];
     }
     // Get the path to your CSV.
     string fn_csv = string(argv[1]);
@@ -75,26 +75,26 @@ int main(int argc, const char *argv[])
     };
 
     // Read the image file
-    //Mat frame = imread("facedetect_test_img.bmp");
+    Mat frame = imread(argv[3]);
 
-    for (int i = 0; i < images.size(); i++) {
-    	Mat frame = images[i];
+    //for (int i = 0; i < images.size(); i++) {
+    //	Mat frame = images[i];
     	// Apply the classifier to the frame
     	if (!frame.empty())
     	{
-       		detectAndDisplay(frame);
+       		detectAndDisplay(frame, output_folder);
     	}
     	else
     	{
-        	printf(" --(!) No captured frame from image %d -- Break!\n", i);
+      //  	printf(" --(!) No captured frame from image %d -- Break!\n", i);
     	}
-    }
+   // }
 
     return 0;
 }
 
 // Function detectAndDisplay
-void detectAndDisplay(Mat frame)
+void detectAndDisplay(Mat frame, String output_folder)
 {
     std::vector<Rect> faces;
     Mat frame_gray;
@@ -121,7 +121,6 @@ void detectAndDisplay(Mat frame)
     int ab = 0; // ab is area of biggest element
 
     for (ic = 0; ic < faces.size(); ic++) // Iterate through all current elements (detected faces)
-
     {
         roi_c.x = faces[ic].x;
         roi_c.y = faces[ic].y;
@@ -137,24 +136,28 @@ void detectAndDisplay(Mat frame)
 
         ab = roi_b.width * roi_b.height; // Get the area of biggest element, at beginning it is same as "current" element
 
-        if (ac > ab)
+        /*if (ac > ab)
         {
             ib = ic;
             roi_b.x = faces[ib].x;
             roi_b.y = faces[ib].y;
             roi_b.width = (faces[ib].width);
             roi_b.height = (faces[ib].height);
-        }
+        }*/
 
-        crop = frame(roi_b);
+        crop = frame(roi_c);
+        cout << "roi_c.x" << roi_c.x << endl;
+        cout << "roi_b.x" << roi_b.x << endl;
         resize(crop, res, Size(128, 128), 0, 0, INTER_LINEAR); // This will be needed later while saving images
         cvtColor(crop, gray, CV_BGR2GRAY); // Convert cropped image to Grayscale
 
         // Form a filename
         filename = "./faces/result";
         stringstream ssfn;
-        ssfn << filenumber << ".png";
-        filename = ssfn.str();
+        ssfn << "/" << filenumber << ".png";
+        filename = output_folder + ssfn.str();
+        cout << output_folder << " " << filename << endl;
+        
         filenumber++;
 
         imwrite(filename, gray);
