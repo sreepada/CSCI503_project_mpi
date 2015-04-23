@@ -1,0 +1,5 @@
+/Users/brianvanover/Desktop/Computer_Science/CS503/Project/database/brian_acm.bmp;0
+/Users/brianvanover/Desktop/Computer_Science/CS503/Project/database/brian_dark.bmp;0
+/Users/brianvanover/Desktop/Computer_Science/CS503/Project/database/brian_pp.bmp;0
+/Users/brianvanover/Desktop/Computer_Science/CS503/Project/database/brian_centro.bmp;0
+
