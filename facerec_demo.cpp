@@ -59,6 +59,7 @@ static void read_csv(const string& filename, vector<Mat>& images, vector<int>& l
         getline(liness, path, separator);
         getline(liness, classlabel);
         if(!path.empty() && !classlabel.empty()) {
+	    printf("%s\n", path.c_str());
             images.push_back(imread(path, 0));
             labels.push_back(atoi(classlabel.c_str()));
         }
@@ -98,8 +99,9 @@ int main(int argc, const char *argv[]) {
 
     // Make all images the same size
     for(int i=0; i < images.size(); i++) {
-        resize(images[i],images[0],images[0].size(),0,0, INTER_NEAREST);
-        printf("Image %d size %d", i, images[i].size().height * images[i].size().width);
+        resize(images[i],images[i],images[0].size(),0,0, INTER_NEAREST);
+	//imshow("resized-image", images[i]);
+        printf("Image %d size %d\n", i, images[i].size().height * images[i].size().width);
     }   
 
     // Get the height from the first image. We'll need this
@@ -138,15 +140,15 @@ int main(int argc, const char *argv[]) {
     model->train(images, labels);
     // The following line predicts the label of a given
     // test image:
-    int predictedLabel = model->predict(testSample);
+    //int predictedLabel = model->predict(testSample);
     //
     // To get the confidence of a prediction call the model with:
     //
-    //      int predictedLabel = -1;
-    //      double confidence = 0.0;
-    //      model->predict(testSample, predictedLabel, confidence);
+          int predictedLabel = -1;
+          double confidence = 0.0;
+          model->predict(testSample, predictedLabel, confidence);
     //
-    string result_message = format("Predicted class = %d / Actual class = %d.", predictedLabel, testLabel);
+    string result_message = format("Predicted class = %d / Actual class = %d / Confidence = %f.\n", predictedLabel, testLabel, confidence);
     cout << result_message << endl;
     // Here is how to get the eigenvalues of this Eigenfaces model:
     Mat eigenvalues = model->FaceRecognizer::getMat("eigenvalues");
