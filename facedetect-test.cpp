@@ -33,7 +33,7 @@ static void read_csv(const string& filename, vector<Mat>& images, vector<int>& l
         getline(liness, path, separator);
         getline(liness, classlabel);
         if(!path.empty() && !classlabel.empty()) {
-            images.push_back(imread(path, 0));
+            images.push_back(imread(path));
             labels.push_back(atoi(classlabel.c_str()));
         }
     }
@@ -75,10 +75,12 @@ int main(int argc, const char *argv[])
     };
 
     // Read the image file
-    Mat frame = imread(argv[3]);
+    //Mat frame = imread(argv[3]);
 
-    //for (int i = 0; i < images.size(); i++) {
-    //	Mat frame = images[i];
+    //Mat frame = images[0];
+
+    for (int i = 0; i < images.size(); i++) {
+    	Mat frame = images[i];
     	// Apply the classifier to the frame
     	if (!frame.empty())
     	{
@@ -86,9 +88,9 @@ int main(int argc, const char *argv[])
     	}
     	else
     	{
-      //  	printf(" --(!) No captured frame from image %d -- Break!\n", i);
+        	printf(" --(!) No captured frame from image %d -- Break!\n", i);
     	}
-   // }
+    }
 
     return 0;
 }
