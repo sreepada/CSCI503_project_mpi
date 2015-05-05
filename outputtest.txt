@@ -1,0 +1,384 @@
+Test1
+Test1
+Test1
+Test2
+Tempdirname=4.csv
+Test1
+Test2
+Tempdirname=5.csv
+Test2
+Tempdirname=2.csv
+Test1
+Test1
+Test2
+Tempdirname=8.csv
+Test1
+Test2
+Tempdirname=9.csv
+Test1
+Test2
+Tempdirname=7.csv
+Test2
+Tempdirname=3.csv
+Test2
+Tempdirname=1.csv
+Test1
+Test2
+Tempdirname=6.csv
+buf is ./training_db/brian_cfbog.bmp;1 and strlen is 31
+buf is ./training_db/brian_cruise.bmp;1 and strlen is 32
+Test3
+buf is ./training_db/brian_dl.bmp;1 and strlen is 28
+Test3
+buf is ./training_db/brian_gym.bmp;1 and strlen is 29
+buf is ./training_db/brian_juanes.bmp;1 and strlen is 32
+buf is ./training_db/brian_mariachi.bmp;1 and strlen is 34
+Test3
+Test3
+buf is ./training_db/brian_model1.bmp;1 and strlen is 32
+Test3
+buf is ./training_db/brian_model2.bmp;1 and strlen is 32
+Test3
+buf is ./training_db/brian_pp.bmp;1 and strlen is 28
+Test3
+buf is ./training_db/brian_vgsa.bmp;1 and strlen is 30
+Test3
+Test4
+Test3
+Test4
+Test4
+received ./2.csv and ./2
+received ./4.csv and ./4
+received ./1.csv and ./1
+Test4
+received ./8.csv and ./8
+Test4
+Test4
+received ./7.csv and ./7
+received ./5.csv and ./5
+Test3
+Test4
+received ./9.csv and ./9
+Test4
+Test4
+received ./6.csv and ./6
+received ./3.csv and ./3
+roi_c.x179
+roi_b.x179
+./7 ./7/0.png
+Test6
+roi_c.x166
+roi_b.x166
+./8 ./8/0.png
+roi_c.x287
+roi_b.x166
+./8 ./8/1.png
+Test6
+roi_c.x258
+roi_b.x258
+./3 ./3/0.png
+roi_c.x18
+roi_b.x258
+./3 ./3/1.png
+Test6
+roi_c.x273
+roi_b.x273
+./4 ./4/0.png
+Test6
+roi_c.x420
+roi_b.x420
+./6 ./6/0.png
+Test6
+roi_c.x435
+roi_b.x435
+./1 ./1/0.png
+Test6
+roi_c.x186
+roi_b.x186
+./5 ./5/0.png
+roi_c.x402
+roi_b.x186
+./5 ./5/1.png
+roi_c.x340
+roi_b.x186
+./5 ./5/2.png
+Test6
+roi_c.x741
+roi_b.x741
+./9 ./9/0.png
+Test6
+roi_c.x363
+roi_b.x363
+./2 ./2/0.png
+roi_c.x507
+roi_b.x363
+./2 ./2/1.png
+roi_c.x271
+roi_b.x363
+./2 ./2/2.png
+roi_c.x641
+roi_b.x363
+./2 ./2/3.png
+roi_c.x465
+roi_b.x363
+./2 ./2/4.png
+roi_c.x185
+roi_b.x363
+./2 ./2/5.png
+Test6
+Test1
+Test2
+Tempdirname=1.csv
+Test1
+Test2
+Tempdirname=2.csv
+Test1
+Test2
+Tempdirname=3.csv
+Test1
+Test2
+Tempdirname=4.csv
+Test1
+Test2
+Tempdirname=5.csv
+Test1
+Test1
+Test1
+Test2
+Tempdirname=8.csv
+Test1
+Test2
+Tempdirname=6.csv
+Test2
+Tempdirname=7.csv
+Test2
+Tempdirname=9.csv
+buf is ./training_db/brian_cfbog.bmp;1 and strlen is 31
+buf is ./training_db/brian_cruise.bmp;1 and strlen is 32
+Test3
+Test3
+buf is ./training_db/brian_dl.bmp;1 and strlen is 28
+buf is ./training_db/brian_gym.bmp;1 and strlen is 29
+Test3
+buf is ./training_db/brian_juanes.bmp;1 and strlen is 32
+Test3
+buf is ./training_db/brian_mariachi.bmp;1 and strlen is 34
+Test3
+buf is ./training_db/brian_model1.bmp;1 and strlen is 32
+buf is ./training_db/brian_model2.bmp;1 and strlen is 32
+Test3
+Test3
+buf is ./training_db/brian_pp.bmp;1 and strlen is 28
+buf is ./training_db/brian_vgsa.bmp;1 and strlen is 30
+Test3
+Test4
+received ./1.csv and ./1
+Test4
+Test4
+Test4
+received ./8.csv and ./8
+Test4
+received ./6.csv and ./6
+received ./5.csv and ./5
+received ./4.csv and ./4
+Test4
+received ./2.csv and ./2
+Test4
+received ./3.csv and ./3
+Test3
+Test4
+received ./7.csv and ./7
+Test3
+Test4
+received ./9.csv and ./9
+roi_c.x179
+roi_b.x179
+./7 ./7/0.png
+Test6
+roi_c.x166
+roi_b.x166
+./8 ./8/0.png
+roi_c.x287
+roi_b.x166
+./8 ./8/1.png
+Test6
+roi_c.x258
+roi_b.x258
+./3 ./3/0.png
+roi_c.x18
+roi_b.x258
+./3 ./3/1.png
+Test6
+roi_c.x273
+roi_b.x273
+./4 ./4/0.png
+Test6
+roi_c.x420
+roi_b.x420
+./6 ./6/0.png
+Test6
+roi_c.x435
+roi_b.x435
+./1 ./1/0.png
+Test6
+roi_c.x186
+roi_b.x186
+./5 ./5/0.png
+roi_c.x402
+roi_b.x186
+./5 ./5/1.png
+roi_c.x340
+roi_b.x186
+./5 ./5/2.png
+Test6
+roi_c.x741
+roi_b.x741
+./9 ./9/0.png
+Test6
+roi_c.x363
+roi_b.x363
+./2 ./2/0.png
+roi_c.x507
+roi_b.x363
+./2 ./2/1.png
+roi_c.x271
+roi_b.x363
+./2 ./2/2.png
+roi_c.x641
+roi_b.x363
+./2 ./2/3.png
+roi_c.x465
+roi_b.x363
+./2 ./2/4.png
+roi_c.x185
+roi_b.x363
+./2 ./2/5.png
+Test6
+Test1
+Test1
+Test1
+Test1
+Test1
+Test2
+Test2
+Tempdirname=7.csv
+Test1
+Test2
+Tempdirname=8.csv
+Test2
+Tempdirname=3.csv
+Test1
+Test1
+Test2
+Tempdirname=6.csv
+Test2
+Tempdirname=1.csv
+Tempdirname=5.csv
+Test2
+Tempdirname=9.csv
+Test1
+Test2
+Tempdirname=4.csv
+Test2
+Tempdirname=2.csv
+buf is ./training_db/brian_cfbog.bmp;1 and strlen is 31
+buf is ./training_db/brian_cruise.bmp;1 and strlen is 32
+buf is ./training_db/brian_dl.bmp;1 and strlen is 28
+Test3
+buf is ./training_db/brian_gym.bmp;1 and strlen is 29
+buf is ./training_db/brian_juanes.bmp;1 and strlen is 32
+buf is ./training_db/brian_mariachi.bmp;1 and strlen is 34
+Test3
+Test3
+buf is ./training_db/brian_model1.bmp;1 and strlen is 32
+buf is ./training_db/brian_model2.bmp;1 and strlen is 32
+buf is ./training_db/brian_pp.bmp;1 and strlen is 28
+buf is ./training_db/brian_vgsa.bmp;1 and strlen is 30
+Test4
+received ./4.csv and ./4
+Test4
+received ./2.csv and ./2
+Test3
+Test4
+received ./6.csv and ./6
+Test3
+Test4
+received ./8.csv and ./8
+Test4
+received ./9.csv and ./9
+Test3
+Test3
+Test4
+Test3
+Test4
+received ./3.csv and ./3
+received ./1.csv and ./1
+Test3
+Test4
+received ./7.csv and ./7
+Test3
+Test4
+received ./5.csv and ./5
+roi_c.x179
+roi_b.x179
+./7 ./7/0.png
+Test6
+roi_c.x166
+roi_b.x166
+./8 ./8/0.png
+roi_c.x287
+roi_b.x166
+./8 ./8/1.png
+Test6
+roi_c.x258
+roi_b.x258
+./3 ./3/0.png
+roi_c.x18
+roi_b.x258
+./3 ./3/1.png
+Test6
+roi_c.x273
+roi_b.x273
+./4 ./4/0.png
+Test6
+roi_c.x420
+roi_b.x420
+./6 ./6/0.png
+Test6
+roi_c.x435
+roi_b.x435
+./1 ./1/0.png
+Test6
+roi_c.x186
+roi_b.x186
+./5 ./5/0.png
+roi_c.x402
+roi_b.x186
+./5 ./5/1.png
+roi_c.x340
+roi_b.x186
+./5 ./5/2.png
+Test6
+roi_c.x741
+roi_b.x741
+./9 ./9/0.png
+Test6
+roi_c.x363
+roi_b.x363
+./2 ./2/0.png
+roi_c.x507
+roi_b.x363
+./2 ./2/1.png
+roi_c.x271
+roi_b.x363
+./2 ./2/2.png
+roi_c.x641
+roi_b.x363
+./2 ./2/3.png
+roi_c.x465
+roi_b.x363
+./2 ./2/4.png
+roi_c.x185
+roi_b.x363
+./2 ./2/5.png
+Test6
