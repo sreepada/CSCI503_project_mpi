@@ -3,14 +3,10 @@
 #include<stdio.h>
 #include<string.h>
 #include<list>
-<<<<<<< HEAD
 #include "facedetect.h"
 #include <sys/stat.h>
 //mpic++ -o imagedetect imagedetect.cpp facedetect.h facedetect-test.cpp `pkg-config --libs opencv`
 //mpirun -np 10 ./imagedetect
-=======
-
->>>>>>> 51ad7a6224c2ea749eeed3aeb0a2e5ec4789f7a0
 using namespace std;
 
 int main(int argc, char*argv[]){
@@ -19,7 +15,6 @@ int main(int argc, char*argv[]){
     MPI_Comm_size(MPI_COMM_WORLD, &nprocs);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     int trainingCompleted=0;
-<<<<<<< HEAD
     if (rank==0)
     {
         int k=0;
@@ -40,8 +35,6 @@ int main(int argc, char*argv[]){
 
     }
 
-=======
->>>>>>> 51ad7a6224c2ea749eeed3aeb0a2e5ec4789f7a0
 	if (rank==0)
 	{	FILE *fp=fopen("allinputs.csv","r");
 		char * buf=(char*)malloc(sizeof(char)*1024);
@@ -50,11 +43,7 @@ int main(int argc, char*argv[]){
 		while(fgets(buf,1024,fp)!=NULL)
 		{	strtok(buf,"\n");
 			strcat(buf,"\0");
-<<<<<<< HEAD
 			//printf("buf is %s and strlen is %d\n",buf,(int)strlen(buf));
-=======
-			printf("buf is %s and strlen is %d\n",buf,(int)strlen(buf));
->>>>>>> 51ad7a6224c2ea749eeed3aeb0a2e5ec4789f7a0
 			MPI_Send(buf, strlen(buf), MPI_CHAR, sendtorank, sendtorank,MPI_COMM_WORLD);
 			sendtorank++;
 			if(sendtorank==nprocs)
@@ -70,7 +59,6 @@ int main(int argc, char*argv[]){
 		trainingCompleted=1;
 	}
 	else{
-<<<<<<< HEAD
         //printf("Test1\n");
         struct stat st = {0};
         char tempdirname[10];
@@ -89,12 +77,6 @@ int main(int argc, char*argv[]){
         strcat(tempdirname,".csv");
         //printf("Tempdirname=%s\n",tempdirname);
         FILE *fp=fopen(tempdirname,"w+");
-=======
-		char stopMsg[]="STOP";
-		MPI_Status status;
-		int count=0;
-		list<string> fileList;
->>>>>>> 51ad7a6224c2ea749eeed3aeb0a2e5ec4789f7a0
 		while(1){
 			MPI_Probe(0, rank, MPI_COMM_WORLD, &status);
 			MPI_Get_count(&status, MPI_CHAR, &count);
@@ -105,7 +87,6 @@ int main(int argc, char*argv[]){
 			if (strcmp(buf,stopMsg)==0)
 				break;
 			else
-<<<<<<< HEAD
                 fputs(buf,fp);
                 //fileList.push_back(buf);
 				//printf("buf at rank %d = %s end of buf with strlen %d but count= %d\n",rank, buf,(int)strlen(buf),count);
@@ -134,20 +115,6 @@ int main(int argc, char*argv[]){
 
     MPI_Bcast(&trainingCompleted, 1, MPI_INT, 0, MPI_COMM_WORLD );
     //printf("training completed by rank %d=%d and extern value is %d\n",rank,trainingCompleted,facedetect(rank,NULL));
-=======
-                fileList.push_back(buf);
-//				printf("buf at rank %d = %s end of buf with strlen %d but count= %d\n",rank, buf,(int)strlen(buf),count);
-		}
-        for (list<string>::iterator it = fileList.begin(); it != fileList.end(); it++)
-        {
-                //Face Detection and cropping code
-        }
-	}
-
-    MPI_Bcast(&trainingCompleted, 1, MPI_INT, 0, MPI_COMM_WORLD );
-    //printf("training completed by rank %d=%d\n",rank,trainingCompleted);
->>>>>>> 51ad7a6224c2ea749eeed3aeb0a2e5ec4789f7a0
-
     //Face recognition code here
 
 	MPI_Finalize();

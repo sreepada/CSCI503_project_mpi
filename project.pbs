@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -l nodes=10:ppn=2:myri
+#PBS -l walltime=00:0:10
+#PBS -o project.out
+#PBS -A lc_jnc
+#PBS -j oe
+#PBS -N project
+
+WORK_HOME=/home/rcf-40/singeeth/CSCI_503/project/CSCI503_project_mpi
+
+cd $WORK_HOME
+# note that we will vary window size when testing
+mpirun -np 10 ./imagedetect
