@@ -110,11 +110,11 @@ int main(int argc, const char *argv[]) {
 		//printf("Image %d size %d\n", i, images[i].size().height * images[i].size().width);
 	}
         for(int i=0; i < att_images.size(); i++) {
-	        resize(att_images[i],att_images[i],att_images[0].size(),0,0, INTER_NEAREST);
+	        resize(att_images[i],att_images[i],images[0].size(),0,0, INTER_NEAREST);
 	        //printf("Image %d size %d\n", i, test_images[i].size().height * test_images[i].size().width);
 	}	
         for(int i=0; i < test_images.size(); i++) {
-	        resize(test_images[i],test_images[i],test_images[0].size(),0,0, INTER_NEAREST);
+	        resize(test_images[i],test_images[i],images[0].size(),0,0, INTER_NEAREST);
 	        //printf("Image %d size %d\n", i, test_images[i].size().height * test_images[i].size().width);
 	}	
 
@@ -148,16 +148,17 @@ int main(int argc, const char *argv[]) {
 		vector<int> labels_i;
 		for (int j = i * 36; j < i*36 + 36; j++) {
 			images_i.push_back(att_images[j]);
+			printf("i:%d j:%d images success\n", i, j);
 			labels_i.push_back(att_labels[j]);
-			printf("i:%d j:%d success", i, j); 
+			printf("i:%d j:%d labels success\n", i, j); 
 		}
 		Ptr<FaceRecognizer> model = createEigenFaceRecognizer();
 		model->train(images_i, labels_i);
-		printf("i:%d create and train works!", i);
+		printf("i:%d create and train works!\n", i);
 		Mat mean = model->getMat("mean");
-		printf("i:%d mean works!", i);
+		printf("i:%d mean works!\n", i);
 		imwrite(format("%s/mean%d.png", mean_folder.c_str(), i), norm_0_255(mean.reshape(1, att_images[0].rows)));
-		printf("i:%d save works!", i);
+		printf("i:%d save works!\n", i);
 	}
 
 
