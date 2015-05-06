@@ -3,10 +3,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<list>
-#include "facedetect.h"
-#include <sys/stat.h>
-//mpic++ -o imagedetect imagedetect.cpp facedetect.h facedetect-test.cpp `pkg-config --libs opencv`
-//mpirun -np 10 ./imagedetect
+
 using namespace std;
 
 int main(int argc, char*argv[]){
@@ -23,6 +20,7 @@ int main(int argc, char*argv[]){
 		while(fgets(buf,1024,fp)!=NULL)
 		{	strtok(buf,"\n");
 			strcat(buf,"\0");
+			printf("buf is %s and strlen is %d\n",buf,(int)strlen(buf));
 			MPI_Send(buf, strlen(buf), MPI_CHAR, sendtorank, sendtorank,MPI_COMM_WORLD);
 			sendtorank++;
 			if(sendtorank==nprocs)
@@ -33,19 +31,15 @@ int main(int argc, char*argv[]){
 			MPI_Send(stopMsg, strlen(stopMsg), MPI_CHAR, i, i,MPI_COMM_WORLD);
 		}
 		fclose(fp);
-	/*int k=0;
-	list<string>
-	for(k=0;k<nprocs;k++)
-	{
-???		MPI_Recv(buf, count, MPI_CHAR, 0, rank,MPI_COMM_WORLD, &status);
-	}*/
-  }
+
+		//Training code and writing trained model to file
+		trainingCompleted=1;
+	}
 	else{
 		char stopMsg[]="STOP";
 		MPI_Status status;
 		int count=0;
-        list<string> fileList;
-		list<string> suspectImages;
+		list<string> fileList;
 		while(1){
 			MPI_Probe(0, rank, MPI_COMM_WORLD, &status);
 			MPI_Get_count(&status, MPI_CHAR, &count);
@@ -56,21 +50,19 @@ int main(int argc, char*argv[]){
 			if (strcmp(buf,stopMsg)==0)
 				break;
 			else
-				fileList.push_back(buf);
-        }
-		
-		for (list<string>::iterator it = fileList.begin(); it != fileList.end(); it++)
+                fileList.push_back(buf);
+//				printf("buf at rank %d = %s end of buf with strlen %d but count= %d\n",rank, buf,(int)strlen(buf),count);
+		}
+        for (list<string>::iterator it = fileList.begin(); it != fileList.end(); it++)
         {
-                char *passString=(*it).c_str();
-		        std::vector<Mat> croppedImages=cropFaces(passString);
-				int found=recognizeSuspect(croppedImages);
-				if(found==1)
-				{
-					suspectImages.push_back(passString);
-				}
+                //Face Detection and cropping code
         }
-//???		MPI_Send(&suspectImages,suspectImages.capacity(),MPI_CHAR,0,rank,MPI_COMM_WORLD);
 	}
+
+    MPI_Bcast(&trainingCompleted, 1, MPI_INT, 0, MPI_COMM_WORLD );
+    //printf("training completed by rank %d=%d\n",rank,trainingCompleted);
+
+    //Face recognition code here
 
 	MPI_Finalize();
 return 0;
