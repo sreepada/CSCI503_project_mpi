@@ -70,24 +70,34 @@ int main(int argc, const char *argv[]) {
     // Check for valid command line arguments, print usage
     // if no arguments were given.
     if (argc < 2) {
-        cout << "usage: " << argv[0] << " <csv.ext> <output_folder> " << endl;
+        cout << "usage: " << argv[0] << " <training_csv.ext> <testing_csv.ext> <output_folder> " << endl;
         exit(1);
     }
     string output_folder = ".";
-    if (argc == 3) {
-        output_folder = string(argv[2]);
+    if (argc == 4) {
+        output_folder = string(argv[3]);
     }
     // Get the path to your CSV.
     string fn_csv = string(argv[1]);
+		string test_csv = string(argv[2]);
     // These vectors hold the images and corresponding labels.
     vector<Mat> images;
+    vector<Mat> test_images;
     vector<int> labels;
+    vector<int> test_labels;
     // Read in the data. This can fail if no valid
     // input filename is given.
     try {
         read_csv(fn_csv, images, labels);
     } catch (cv::Exception& e) {
         cerr << "Error opening file \"" << fn_csv << "\". Reason: " << e.msg << endl;
+        // nothing more we can do
+        exit(1);
+    }
+    try {
+        read_csv(test_csv, test_images, test_labels);
+    } catch (cv::Exception& e) {
+        cerr << "Error opening file \"" << test_csv << "\". Reason: " << e.msg << endl;
         // nothing more we can do
         exit(1);
     }
@@ -103,6 +113,11 @@ int main(int argc, const char *argv[]) {
 	//imshow("resized-image", images[i]);
         printf("Image %d size %d\n", i, images[i].size().height * images[i].size().width);
     }   
+    for(int i=0; i < test_images.size(); i++) {
+        resize(test_images[i],test_images[i],test_images[0].size(),0,0, INTER_NEAREST);
+        printf("Image %d size %d\n", i, test_images[i].size().height * test_images[i].size().width);
+    }   
+
 
     // Get the height from the first image. We'll need this
     // later in code to reshape the images to their original
@@ -113,10 +128,10 @@ int main(int argc, const char *argv[]) {
     // done, so that the training data (which we learn the
     // cv::FaceRecognizer on) and the test data we test
     // the model with, do not overlap.
-    Mat testSample = images[images.size() - 1];
-    int testLabel = labels[labels.size() - 1];
-    images.pop_back();
-    labels.pop_back();
+//    Mat testSample = images[images.size() - 1];
+//    int testLabel = labels[labels.size() - 1];
+//    images.pop_back();
+//    labels.pop_back();
     // The following lines create an Eigenfaces model for
     // face recognition and train it with the images and
     // labels read from the given CSV file.
@@ -144,12 +159,14 @@ int main(int argc, const char *argv[]) {
     //
     // To get the confidence of a prediction call the model with:
     //
-          int predictedLabel = -1;
-          double confidence = 0.0;
-          model->predict(testSample, predictedLabel, confidence);
-    //
-    string result_message = format("Predicted class = %d / Actual class = %d / Confidence = %f.\n", predictedLabel, testLabel, confidence);
-    cout << result_message << endl;
+		for (vector<Mat>::iterator it = test_images.begin(); it != test_images.end(); it++) {
+			int predictedLabel = 100;
+			double confidence = 0.0;
+			model->predict(*it, predictedLabel, confidence);
+			cout << "Predicted class = " << predictedLabel ;
+			cout << " Actual class = " << test_labels[it - test_images.begin()];
+			cout <<	" Confidence = " << confidence << endl;
+		}
     // Here is how to get the eigenvalues of this Eigenfaces model:
     Mat eigenvalues = model->FaceRecognizer::getMat("eigenvalues");
     // And we can do the same to display the Eigenvectors (read Eigenfaces):
