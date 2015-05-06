@@ -3,20 +3,25 @@
 #include<stdio.h>
 #include<string.h>
 #include<list>
-#include "facedetect.h"
 #include <sys/stat.h>
+#include "detectAndRecog.cpp"
+#include <opencv2/core/core.hpp>
+#include <opencv2/contrib/contrib.hpp>
 //mpic++ -o imagedetect imagedetect.cpp facedetect.h facedetect-test.cpp `pkg-config --libs opencv`
 //mpirun -np 10 ./imagedetect
 using namespace std;
 
 int main(int argc, char*argv[]){
 	MPI_Init(&argc, &argv);
+	double start_time,end_time;
 	int nprocs,rank;
     MPI_Comm_size(MPI_COMM_WORLD, &nprocs);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     int trainingCompleted=0;
 	if (rank==0)
-	{	FILE *fp=fopen("allinputs.csv","r");
+	{	
+		start_time=MPI_Wtime();
+		FILE *fp=fopen("allinputs.csv","r");
 		char * buf=(char*)malloc(sizeof(char)*1024);
 		int i=0;
 		int sendtorank=1;
@@ -37,7 +42,12 @@ int main(int argc, char*argv[]){
 	list<string>
 	for(k=0;k<nprocs;k++)
 	{
-???		MPI_Recv(buf, count, MPI_CHAR, 0, rank,MPI_COMM_WORLD, &status);
+			MPI_Status status;
+			MPI_Probe(MPI_ANY_SOURCE,MPI_ANY_TAG, MPI_COMM_WORLD, &status);
+			MPI_Get_count(&status, MPI_CHAR, &count);
+			char buf[count+1];
+			memset(buf,'\0',sizeof(char)*(count+1));
+			MPI_Recv(buf, count, MPI_CHAR, 0, rank,MPI_COMM_WORLD, &status);
 	}*/
   }
 	else{
@@ -45,7 +55,7 @@ int main(int argc, char*argv[]){
 		MPI_Status status;
 		int count=0;
         list<string> fileList;
-		list<string> suspectImages;
+		vector<string> suspectImages;
 		while(1){
 			MPI_Probe(0, rank, MPI_COMM_WORLD, &status);
 			MPI_Get_count(&status, MPI_CHAR, &count);
@@ -58,20 +68,30 @@ int main(int argc, char*argv[]){
 			else
 				fileList.push_back(buf);
         }
-		
+		int sum=0;
 		for (list<string>::iterator it = fileList.begin(); it != fileList.end(); it++)
         {
-                char *passString=(*it).c_str();
+                const char *passString=(*it).c_str();
 		        std::vector<Mat> croppedImages=cropFaces(passString);
-				int found=recognizeSuspect(croppedImages);
+				int found=recognizeSuspect(croppedImages, "trained.ysm");
 				if(found==1)
 				{
 					suspectImages.push_back(passString);
+					printf("Suspect found in image %s\n",passString);
 				}
         }
-//???		MPI_Send(&suspectImages,suspectImages.capacity(),MPI_CHAR,0,rank,MPI_COMM_WORLD);
+	/*	for ( int i= 0; i<suspectImages.size(); i++)
+		{
+			sum += suspectImages[i].size();
+		}
+		MPI_Send(&suspectImages,sum,MPI_CHAR,0,rank,MPI_COMM_WORLD);*/
 	}
-
+	MPI_Barrier(MPI_COMM_WORLD);
+	if(rank==0)
+	{
+		end_time=MPI_Wtime();
+		printf("Time elapsed %f\n",end_time-start_time);
+	}
 	MPI_Finalize();
 return 0;
 }
