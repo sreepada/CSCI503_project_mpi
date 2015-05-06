@@ -7,7 +7,8 @@
 #include "detectAndRecog.cpp"
 #include <opencv2/core/core.hpp>
 #include <opencv2/contrib/contrib.hpp>
-//mpic++ -o imagedetect imagedetect.cpp facedetect.h facedetect-test.cpp `pkg-config --libs opencv`
+#include <omp.h>
+//mpic++ -o imagedetect imagedetect.cpp `pkg-config --libs opencv`
 //mpirun -np 10 ./imagedetect
 using namespace std;
 
@@ -34,6 +35,7 @@ int main(int argc, char*argv[]){
 				sendtorank=1;
 		}
 		char stopMsg[]="STOP";
+		#pragma omp for
 		for(i=1;i<nprocs;i++){
 			MPI_Send(stopMsg, strlen(stopMsg), MPI_CHAR, i, i,MPI_COMM_WORLD);
 		}
@@ -54,7 +56,7 @@ int main(int argc, char*argv[]){
 		char stopMsg[]="STOP";
 		MPI_Status status;
 		int count=0;
-        list<string> fileList;
+        vector<string> fileList;
 		vector<string> suspectImages;
 		while(1){
 			MPI_Probe(0, rank, MPI_COMM_WORLD, &status);
@@ -69,9 +71,11 @@ int main(int argc, char*argv[]){
 				fileList.push_back(buf);
         }
 		int sum=0;
-		for (list<string>::iterator it = fileList.begin(); it != fileList.end(); it++)
-        {
-                const char *passString=(*it).c_str();
+		#pragma omp for
+		//for (list<string>::iterator it = fileList.begin(); it != fileList.end(); it++)
+        for(int i= 0; i<fileList.size(); i++)
+		{
+                const char *passString=fileList[i].c_str();
 		        std::vector<Mat> croppedImages=cropFaces(passString);
 				int found=recognizeSuspect(croppedImages, "trained.ysm");
 				if(found==1)
