@@ -1,28 +1,72 @@
 #!/bin/bash
-#PBS -l nodes=10:ppn=2:myri
-#PBS -l walltime=00:0:10
+#PBS -l nodes=32:ppn=2:myri
+#PBS -l walltime=10:0:10
 #PBS -o project.out
 #PBS -A lc_jnc
 #PBS -j oe
-#PBS -N project
+#PBS -N projectopencv
 
 WORK_HOME=/home/rcf-40/ctadepal/CSCI503_project_mpi
 
 cd $WORK_HOME
 # note that we will vary window size when testing
-mpirun -np 2 ./imagedetect
-mpirun -np 4 ./imagedetect
-mpirun -np 6 ./imagedetect
-mpirun -np 8 ./imagedetect
-mpirun -np 10 ./imagedetect
-mpirun -np 12 ./imagedetect
-mpirun -np 14 ./imagedetect
-mpirun -np 18 ./imagedetect
-mpirun -np 20 ./imagedetect
-mpirun -np 22 ./imagedetect
-mpirun -np 24 ./imagedetect
-mpirun -np 26 ./imagedetect
-mpirun -np 28 ./imagedetect
-mpirun -np 30 ./imagedetect
-mpirun -np 32 ./imagedetect
-
+mpirun -np 2 ./imagedetect 800rowData.csv
+mpirun -np 4 ./imagedetect 800rowData.csv
+mpirun -np 6 ./imagedetect 800rowData.csv
+mpirun -np 8 ./imagedetect 800rowData.csv
+mpirun -np 10 ./imagedetect 800rowData.csv
+mpirun -np 12 ./imagedetect 800rowData.csv
+mpirun -np 14 ./imagedetect 800rowData.csv
+mpirun -np 18 ./imagedetect 800rowData.csv
+mpirun -np 20 ./imagedetect 800rowData.csv
+mpirun -np 22 ./imagedetect 800rowData.csv
+mpirun -np 24 ./imagedetect 800rowData.csv
+mpirun -np 26 ./imagedetect 800rowData.csv
+mpirun -np 28 ./imagedetect 800rowData.csv
+mpirun -np 30 ./imagedetect 800rowData.csv
+mpirun -np 32 ./imagedetect 800rowData.csv
+mpirun -np 2 ./imagedetect 1600rowData.csv
+mpirun -np 4 ./imagedetect 1600rowData.csv
+mpirun -np 6 ./imagedetect 1600rowData.csv
+mpirun -np 8 ./imagedetect 1600rowData.csv
+mpirun -np 10 ./imagedetect 1600rowData.csv
+mpirun -np 12 ./imagedetect 1600rowData.csv
+mpirun -np 14 ./imagedetect 1600rowData.csv
+mpirun -np 18 ./imagedetect 1600rowData.csv
+mpirun -np 20 ./imagedetect 1600rowData.csv
+mpirun -np 22 ./imagedetect 1600rowData.csv
+mpirun -np 24 ./imagedetect 1600rowData.csv
+mpirun -np 26 ./imagedetect 1600rowData.csv
+mpirun -np 28 ./imagedetect 1600rowData.csv
+mpirun -np 30 ./imagedetect 1600rowData.csv
+mpirun -np 32 ./imagedetect 1600rowData.csv
+mpirun -np 2 ./imagedetectomp 800rowData.csv
+mpirun -np 4 ./imagedetectomp 800rowData.csv
+mpirun -np 6 ./imagedetectomp 800rowData.csv
+mpirun -np 8 ./imagedetectomp 800rowData.csv
+mpirun -np 10 ./imagedetectomp 800rowData.csv
+mpirun -np 12 ./imagedetectomp 800rowData.csv
+mpirun -np 14 ./imagedetectomp 800rowData.csv
+mpirun -np 18 ./imagedetectomp 800rowData.csv
+mpirun -np 20 ./imagedetectomp 800rowData.csv
+mpirun -np 22 ./imagedetectomp 800rowData.csv
+mpirun -np 24 ./imagedetectomp 800rowData.csv
+mpirun -np 26 ./imagedetectomp 800rowData.csv
+mpirun -np 28 ./imagedetectomp 800rowData.csv
+mpirun -np 30 ./imagedetectomp 800rowData.csv
+mpirun -np 32 ./imagedetectomp 800rowData.csv
+mpirun -np 2 ./imagedetectomp 1600rowData.csv
+mpirun -np 4 ./imagedetectomp 1600rowData.csv
+mpirun -np 6 ./imagedetectomp 1600rowData.csv
+mpirun -np 8 ./imagedetectomp 1600rowData.csv
+mpirun -np 10 ./imagedetectomp 1600rowData.csv
+mpirun -np 12 ./imagedetectomp 1600rowData.csv
+mpirun -np 14 ./imagedetectomp 1600rowData.csv
+mpirun -np 18 ./imagedetectomp 1600rowData.csv
+mpirun -np 20 ./imagedetectomp 1600rowData.csv
+mpirun -np 22 ./imagedetectomp 1600rowData.csv
+mpirun -np 24 ./imagedetectomp 1600rowData.csv
+mpirun -np 26 ./imagedetectomp 1600rowData.csv
+mpirun -np 28 ./imagedetectomp 1600rowData.csv
+mpirun -np 30 ./imagedetectomp 1600rowData.csv
+mpirun -np 32 ./imagedetectomp 1600rowData.csv
