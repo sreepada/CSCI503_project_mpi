@@ -1,0 +1,12 @@
+./serial 800rowData.csv
+training took: 2.53925 seconds
+time elasped: 131.222
+
+ining took: 2.68724 seconds
+time elasped: 252.527
+
+./serial 1800rowData.csv
+training took: 2.82118 seconds
+time elasped: 416.96
+
+
