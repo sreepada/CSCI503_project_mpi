@@ -2,6 +2,7 @@
 training took: 2.53925 seconds
 time elasped: 131.222
 
+
 ining took: 2.68724 seconds
 time elasped: 252.527
 
@@ -10,3 +11,55 @@ training took: 2.82118 seconds
 time elasped: 416.96
 
 
+./serial 800rowData.csv 
+training took: 0.868877 seconds
+time elasped: 100.603
+
+mpirun -np 2 ./imagedetect 800rowData.csv 
+Time elapsed 141.126593
+
+mpirun -np 3 ./imagedetect 800rowData.csv 
+Time elapsed 81.955425
+
+./imagedetect -np 4
+Time elapsed 69.638690
+
+
+./serial 1600rowData.csv 
+training took: 0.912552 seconds
+time elasped: 195.551
+
+mpirun -np 2 ./imagedetect 1600rowData.csv 
+Time elapsed 239.231015
+
++ mpirun -np 3 ./imagedetect 1600rowData.csv
+Time elapsed 178.750348
+
++ mpirun -np 4 ./imagedetect 1600rowData.csv
+Time elapsed 138.216656
+
++ ./serial 1800rowData.csv
+training took: 0.867813 seconds
+time elasped: 257.687
+
++ mpirun -np 2 ./imagedetect 1800rowData.csv
+Time elapsed 306.888122
+
++ mpirun -np 3 ./imagedetect 1800rowData.csv
+Time elapsed 245.247395
+
++ mpirun -np 4 ./imagedetect 1800rowData.csv
+Time elapsed 194.512696
+
++ ./serial 2400rowData.csv
+training took: 0.857253 seconds
+time elasped: 343.417
+
++ mpirun -np 2 ./imagedetect 2400rowData.csv
+Time elapsed 416.823846
+
++ mpirun -np 3 ./imagedetect 2400rowData.csv
+Time elapsed 336.503771
+
++ mpirun -np 4 ./imagedetect 2400rowData.csv
+Time elapsed 254.363292
