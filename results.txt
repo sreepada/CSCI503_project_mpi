@@ -9,4 +9,6 @@ time elasped: 252.527
 training took: 2.82118 seconds
 time elasped: 416.96
 
-
+./serial 2400rowData.csv
+training took: 3.84382 seconds
+time elasped: 548.273
