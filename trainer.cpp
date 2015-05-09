@@ -174,6 +174,7 @@ int main(int argc, const char *argv[]) {
 
         Ptr<FaceRecognizer> model2 = createEigenFaceRecognizer();
 	model2->train(images, labels);
+	model2->save("eigenfaces_at.yml");
 	// The following line predicts the label of a given
 	// test image:
 	//int predictedLabel = model->predict(testSample);
