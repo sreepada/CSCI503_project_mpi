@@ -1,5 +1,10 @@
 ./test_data/suspect_faces/9.png;1
-./att_faces/s1/1.pgm;0
+./cropped_training_db/17.png;1
+./cropped_training_db/10.png;1
+./cropped_training_db/13.png;1
+./cropped_training_db/3.png;1
+./cropped_training_db/7.png;1
+./att_faces/s1/1.pgm;1
 ./att_faces/s2/1.pgm;0
 ./att_faces/s3/1.pgm;0
 ./att_faces/s4/1.pgm;0

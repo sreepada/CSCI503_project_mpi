@@ -69,15 +69,15 @@ vector<Mat> cropFaces(string path)
 	vector<Rect> faces;
 	Mat frame = imread(path);
 	Mat gray;
-	if (path.find("att_faces") != string::npos) {
-		resize(frame, frame, Size(128, 128), 0, 0, INTER_LINEAR); // This will be needed later while saving images
+	Mat res;
+	if (path.find("cropped") != string::npos || path.find("suspect_faces") != string::npos || path.find("att_faces") != string::npos) {
+		resize(frame, res, Size(128, 128), 0, 0, INTER_LINEAR); // This will be needed later while saving images
 		cvtColor(frame, gray, CV_BGR2GRAY); // Convert cropped image to Grayscale
 		cropped_faces.push_back(gray);
 	}
 	else {
 		Mat frame_gray;
 		Mat crop;
-		Mat res;
 
 		cvtColor(frame, frame_gray, COLOR_BGR2GRAY);
 		equalizeHist(frame_gray, frame_gray);
