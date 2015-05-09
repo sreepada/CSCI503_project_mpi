@@ -24,7 +24,7 @@ int main(int argc, char*argv[]){
 	{	
 		start_time=MPI_Wtime();
 		someMain("train.csv", "test.csv", "att.csv");
-		FILE *fp=fopen("test.csv","r");
+		FILE *fp=fopen(argv[1],"r");
 		char * buf=(char*)malloc(sizeof(char)*1024);
 		int i=0;
 		int sendtorank=1;
