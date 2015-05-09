@@ -1,5 +1,6 @@
 #include "timer.cc"
 #include "detectAndRecog.cpp"
+#include "trainer.cpp"
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/contrib/contrib.hpp>
@@ -21,7 +22,11 @@ int main(int argc, const char *argv[]) {
 	
 	// Get the path to your CSV.
 	string filename = string(argv[1]);
+	double seconds = read_timer();
 	// These vectors hold the images and corresponding labels.
+
+	someMain("train.csv", "test.csv", "att.csv");
+	cout << "training took: " << read_timer() - seconds << " seconds"<< endl;
 
 	ifstream file(filename.c_str(), ifstream::in);
 	if (!file) {
@@ -29,7 +34,6 @@ int main(int argc, const char *argv[]) {
 		CV_Error(CV_StsBadArg, error_message);
 	}
 	string line, path, classlabel;
-	double seconds = read_timer();
 	while (getline(file, line)) {
 		stringstream liness(line);
 		getline(liness, path, ';');

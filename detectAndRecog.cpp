@@ -128,12 +128,12 @@ int recognizeSuspect(vector<Mat> test_images, vector<int> test_labels, string mo
 		int predictedLabel = -1;
 		double confidence = 0.0;
 		model->predict(*it, predictedLabel, confidence);
-		cout << "Actual label = " << test_labels[it - test_images.begin()];
-		cout << " Predicted class = " << predictedLabel ;
+//		cout << "Actual label = " << test_labels[it - test_images.begin()];
+//		cout << " Predicted class = " << predictedLabel ;
 		if (predictedLabel == 1) {
 			flag = 1;
 		}
-		cout <<	" Confidence = " << confidence << endl;
+//		cout <<	" Confidence = " << confidence << endl;
 	}
 	return flag;
 }
