@@ -7,6 +7,7 @@
 #include "detectAndRecog.cpp"
 #include <opencv2/core/core.hpp>
 #include <opencv2/contrib/contrib.hpp>
+#include "trainer.cpp"
 //mpic++ -o imagedetect imagedetect.cpp facedetect.h facedetect-test.cpp `pkg-config --libs opencv`
 //mpirun -np 10 ./imagedetect
 using namespace std;
@@ -21,7 +22,8 @@ int main(int argc, char*argv[]){
 	if (rank==0)
 	{	
 		start_time=MPI_Wtime();
-		FILE *fp=fopen("allinputs.csv","r");
+		someMain("train.csv", "test.csv", "att.csv");
+		FILE *fp=fopen(argv[1],"r");
 		char * buf=(char*)malloc(sizeof(char)*1024);
 		int i=0;
 		int sendtorank=1;
@@ -51,6 +53,7 @@ int main(int argc, char*argv[]){
 	}*/
   }
 	else{
+
 		char stopMsg[]="STOP";
 		MPI_Status status;
 		int count=0;
@@ -69,11 +72,19 @@ int main(int argc, char*argv[]){
 				fileList.push_back(buf);
         }
 		int sum=0;
+	
 		for (list<string>::iterator it = fileList.begin(); it != fileList.end(); it++)
         {
-                const char *passString=(*it).c_str();
-		        std::vector<Mat> croppedImages=cropFaces(passString);
-				int found=recognizeSuspect(croppedImages, "trained.ysm");
+                const char *temppassString=(*it).c_str();
+				char *passString=strdup(temppassString);
+				char* path=strtok(passString,";");
+				vector<int> croppedLabel;
+		        std::vector<Mat> croppedImages=cropFaces(path);
+				path=strtok(NULL,";");
+				for(int i=0; i < croppedImages.size(); i++) {
+					croppedLabel.push_back(atoi(path));
+				}  
+				int found=recognizeSuspect(croppedImages, croppedLabel, "eigenfaces_at.yml");
 				if(found==1)
 				{
 					suspectImages.push_back(passString);
