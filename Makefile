@@ -11,4 +11,4 @@ trainer:
 facerec:
 	g++ `pkg-config --cflags opencv` facerec_demo.cpp `pkg-config --libs opencv` -o facerec_demo
 clean:
-	rm *.png serial imagedetect facedetectfn-test facedetect-test facerec_demo
+	rm *.png serial imagedetect facedetectfn-test facedetect-test facerec_demo trainer
