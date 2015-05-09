@@ -62,3 +62,30 @@ Time elapsed 336.503771
 
 + mpirun -np 4 ./imagedetect 2400rowData.csv
 Time elapsed 254.363292
+
+===========================================================================================
+openmp hybrid mpi results
++ mpirun -np 2 ./imagedetectomp 800rowData.csv
+Time elapsed 110.874160
++ mpirun -np 3 ./imagedetectomp 800rowData.csv
+Time elapsed 97.649118
++ mpirun -np 4 ./imagedetectomp 800rowData.csv
+Time elapsed 69.128672
++ mpirun -np 2 ./imagedetectomp 1600rowData.csv
+Time elapsed 219.690642
++ mpirun -np 3 ./imagedetectomp 1600rowData.csv
+Time elapsed 180.530959
++ mpirun -np 4 ./imagedetectomp 1600rowData.csv
+Time elapsed 136.811112
++ mpirun -np 2 ./imagedetectomp 1800rowData.csv
+Time elapsed 277.097598
++ mpirun -np 3 ./imagedetectomp 1800rowData.csv
+Time elapsed 242.191808
++ mpirun -np 4 ./imagedetectomp 1800rowData.csv
+Time elapsed 188.139441
++ mpirun -np 2 ./imagedetectomp 2400rowData.csv
+Time elapsed 406.953541
++ mpirun -np 3 ./imagedetectomp 2400rowData.csv
+Time elapsed 268.443437
++ mpirun -np 4 ./imagedetectomp 2400rowData.csv
+Time elapsed 251.943222
