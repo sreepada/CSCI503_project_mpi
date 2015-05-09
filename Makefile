@@ -6,6 +6,8 @@ mpi:
 	mpic++ `pkg-config --cflags opencv` facerec_demo.cpp `pkg-config --libs opencv` -o facerec_demo
 serial:
 	g++ `pkg-config --cflags opencv` serial.cpp `pkg-config --libs opencv` -o serial
+trainer:
+	g++ `pkg-config --cflags opencv` trainer.cpp `pkg-config --libs opencv` -o trainer
 facerec:
 	g++ `pkg-config --cflags opencv` facerec_demo.cpp `pkg-config --libs opencv` -o facerec_demo
 clean:

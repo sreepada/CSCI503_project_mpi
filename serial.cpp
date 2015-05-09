@@ -28,14 +28,19 @@ int main(int argc, const char *argv[]) {
 		string error_message = "No valid input file was given, please check the given filename.";
 		CV_Error(CV_StsBadArg, error_message);
 	}
-	string line, path;
+	string line, path, classlabel;
 	double seconds = read_timer();
 	while (getline(file, line)) {
 		stringstream liness(line);
-		getline(liness, path);
+		getline(liness, path, ';');
+		getline(liness, classlabel);
 		if(!path.empty()) {
 				vector<Mat> croppedFaces = cropFaces(path);
-				int result = recognizeSuspect(croppedFaces, "trained.ysm");
+				vector<int> croppedLabel;
+				for(int i=0; i < croppedFaces.size(); i++) {
+					croppedLabel.push_back(atoi(classlabel.c_str()));
+				}   
+				int result = recognizeSuspect(croppedFaces, croppedLabel, "eigenfaces_at.yml");
 		}
 	}
 	cout << "time elasped: " << read_timer() - seconds << endl;
